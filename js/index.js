@@ -21,39 +21,39 @@ var app = {
 
 $(function(){
 	
-	function loadBugs() {
-		var bugs = $('#bugs ul');
+	function loadComs() {
+		var coms = $('#coms ul');
 		
 		$.ajax({
 			type: 'GET',
-			url: 'http://www.argosapps.fr/bapp_retrop/server/bugs.php?&jsoncallback=?',
+			url: 'http://www.argosapps.fr/retro/server/coms.php?&jsoncallback=?',
 			dataType: 'JSONp',
 			timeout: 8000,
 			success: function(data) {
 				$.each(data, function(i,item){
-					bugs.append('<li>'+'De : '+'<b>'+item.pseudo+'</b>');
-					bugs.append('Sujet : '+item.titre_com);
-					bugs.append('<br/>'+'Date : '+item.datefr);
-					bugs.append('<br/>'+'Commentaire : '+item.commentaire)
+					coms.append('<li>'+'De : '+'<b>'+item.pseudo+'</b>');
+					coms.append('Sujet : '+item.titre_com);
+					coms.append('<br/>'+'Date : '+item.datefr);
+					coms.append('<br/>'+'Commentaire : '+item.commentaire)
 				});
 			},
 			error: function(data) {
-				bugs.append('<li>There was an error loading the bugs');
+				coms.append('<li>Erreur pendant le chargement des coms');
 				alert('fuuuuuuuuck');
 			}
 		});
 	}
 
-$('#add-bug form').submit(function(){
+$('#add-com form').submit(function(){
                 var postData = $(this).serialize();
 
                 $.ajax({
                         type: 'POST',
                         data: postData,
-                        url: 'http://www.argosapps.fr/bapp_retrop/server/add-bug.php',
+                        url: 'http://www.argosapps.fr/retro/server/add-com.php',
                         success: function(data){
                                 //do your thing
-                                console.log('Bug added!');
+                                console.log('Com ajouté !');
                         },
                         error: function(){
                                 //do your thing
@@ -65,6 +65,6 @@ $('#add-bug form').submit(function(){
         });
 
 	
-	loadBugs();
+	loadComs();
 	
 });
