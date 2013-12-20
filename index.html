@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+
+<!--Si on ajoute du css-->
+<!-- <link href="css/styles.css" rel="stylesheet"> -->
+
+	<script type="text/javascript" charset="utf-8">
+// Wait for device API libraries to load
+    document.addEventListener("deviceready", onDeviceReady, false);
+
+    // device APIs are available
+    function onDeviceReady() {
+	// Add event listener to the back button
+        document.addEventListener("backbutton", backButtonHandler, false);
+		navigator.splashscreen.show();
+    }
+	
+	
+	function backButtonHandler(e )
+   {
+ 
+      if( $("#adresses").length > 0 )
+      {
+         // Code to exit app
+         navigator.app.exitApp();
+      }
+      else
+      {
+        // Code to navigate to the history action
+         navigator.app.backHistory();
+      }
+}
+	</script>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="format-detection" content = "telephone=no">
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width;">
+
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/styles_fiche_lieu.css">
+	<script src="phonegap.js" type="text/javascript"></script>
+
+	
+	<link href="camera_css" type="text/css" rel="stylesheet" />
+	
+	<style id="camera_css" type="text/css">
+	#smallImage:hover{
+	width: 300px;
+	height: 225px;
+	}
+	</style>
+	
+	
+    <script type="text/javascript" charset="utf-8">
+
+    var pictureSource;   // picture source
+    var destinationType; // sets the format of returned value
+
+    // Charger l'API camera
+    //
+    document.addEventListener("deviceready",onDeviceReady,false);
+
+    // API prête, disponible
+    //
+    function onDeviceReady() {
+        pictureSource=navigator.camera.PictureSourceType;
+        destinationType=navigator.camera.DestinationType;
+    }
+
+    // Called when a photo is successfully retrieved
+    //
+    function onPhotoDataSuccess(imageData) {
+      // Uncomment to view the base64-encoded image data
+      // console.log(imageData);
+
+      // Get image handle
+      //
+      var smallImage = document.getElementById('smallImage');
+
+      // Unhide image elements
+      //
+      smallImage.style.display = 'block';
+
+      // Show the captured photo
+      // The inline CSS rules are used to resize the image
+      //
+      smallImage.src = "data:image/jpeg;base64," + imageData;
+    }
+
+    // Called when a photo is successfully retrieved
+    //
+    function onPhotoURISuccess(imageURI) {
+      // Uncomment to view the image file URI
+      // console.log(imageURI);
+
+      // Get image handle
+      //
+      var smallImage = document.getElementById('smallImage');
+
+      // Unhide image elements
+      //
+      smallImage.style.display = 'block';
+
+      // Show the captured photo
+      // The inline CSS rules are used to resize the image
+      //
+      smallImage.src = imageURI;
+    }
+
+    // A button will call this function
+    //
+    function capturePhoto() {
+      // Take picture using device camera and retrieve image as base64-encoded string
+      navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50,
+        destinationType: destinationType.DATA_URL });
+    }
+
+    // A button will call this function
+    //
+    function capturePhotoEdit() {
+      // Take picture using device camera, allow edit, and retrieve image as base64-encoded string
+      navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 20, allowEdit: true,
+        destinationType: destinationType.DATA_URL });
+    }
+
+    // A button will call this function
+    //
+    function getPhoto(source) {
+      // Retrieve image file location from specified source
+      navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 50,
+        destinationType: destinationType.FILE_URI,
+        sourceType: source });		
+    }
+
+    // Called if something bad happens.
+    //
+    function onFail(message) {
+      alert('Failed because: ' + message);
+    }
+
+    </script>
+	
+	
+</head>
+<body>
+
+
+		<header>
+			<h1>Rétrospective</h1>
+		</header>
+		
+		<h2>Le Procope </h2>
+		<img id="bandeau" src="img/bandeau_procope.png" alt="photo du Procope" />
+		
+		<div id="adresses">
+		
+			13 rue de l'Ancienne Comédie <br/>75006 PARIS <br/> Métros : 4 Odéon <a href="img/plan_metro.png"><br/>Voir plan du métro</a>
+
+			<br />01 40 46 79 00 <br/><a href="http://www.procope.com" alt="aller au site du Procope">www.procope.com</a>
+	
+		</div>
+		<br />
+		
+		<p class="description">Le café Procope est un célèbre, et l'un des plus anciens cafés-restaurants de Paris. Il se situe 13 rue de l'Ancienne Comédie , dans le 6eme arrondissement. Il est également accessible par le charmant passage de la Cour du Commerce-Saint-André. Café d'artistes et d'intellectuels, il était fréquenté au XVIIIeme siècle par Voltaire, Diderot, et d'Alembert. Centre actif durant la la Révolution française, il reste longtemps un lieude rencontre d'écrivains et d'intellectuels (Musset, Verlaine, Anatole France), d'hommes politiques. D'ailleurs, vous pourrez admirer l'un des chapeaux de Napoléon, exposé dans l'entrée !</p>
+		
+		<br />
+		
+		<div id="frequentation">
+			<h3>Fréquenté par...</h3>
+			<ul>
+				<li>Voltaire</li>
+				<li>Rousseau</li>
+				<li>D'Alembert</li>
+				<li>Benjamin Franklin</li>
+			</ul>
+			<button><a href="geoloc.html" alt="voir la carte pour aller au Procope">Je veux y aller !</a></button>
+		</div>
+		
+		<br />
+		
+		<div id="notes">
+			<h3>Notes utilisateurs :</h3><!-- ICI REQUETE POUR CALCULER LA MOYENNE DES NOTES DES UTILISATEURS-->
+			<form>
+				Ma note :<select name="manote">
+				<option value="1">5</option>
+				<option value="2" selected>4</option>
+				<option value="3">3</option>
+				<option value="4">2</option>
+				<option value="5">1</option>
+				<option value="6">0</option>
+				</select>
+			</form>
+			<!--WIDGET FACEBOOK LIKE-->
+		</div>
+		
+		<br />
+		
+		<!----------------PHOTOS PARTAGE--------------------->
+
+		
+			<h1>Partager ma photo !</h1>
+    <img src="img/capture_picture.png" alt="Prendre une photo" /><button onclick="capturePhoto();">Prendre une photo</button> <br>
+    <!-- <button  onclick="capturePhotoEdit();">Capture Editable Photo</button> <br> -->
+     <img src="img/add_picture.png" alt="Ajouter une photo" /><button onclick="getPhoto(pictureSource.PHOTOLIBRARY);">Ajouter une photo</button><br>
+    <!-- <button onclick="getPhoto(pictureSource.SAVEDPHOTOALBUM);">From Photo Album</button><br>-->
+	
+    <img style="display:none;width:120px;height:90px;" id="smallImage" src="" />
+	
+		
+		<!----------------COMMENTER--------------------->
+		
+	<div class="page" id="add-bug">
+	
+		<h3>Je commente</h1>	
+		<form>
+			<label for="pseudo">Pseudo</label>
+			<input type="text" id="pseudo" name="pseudo">
+			<br />
+			<label for="titre_com">Titre</label>
+			<input type="text" id="titre_com" name="titre_com">
+			<br />
+			<label for="commentaire">Commentaire</label>
+			<textarea id="commentaire" name="commentaire" cols="22" rows="10"></textarea>
+
+
+			<input type="submit" value="Poster">
+		</form>
+	</div>
+	
+		<br />
+		
+			<div class="page current" id="bugs">
+		<header>
+			<h3>Commentaires</h3>
+		</header>
+		
+		<ul></ul>
+	</div>
+	
+
+
+
+	<script src="js/zepto.min.js"></script>
+	<script src="js/index.js"></script>
+	<script>
+		app.initialize();
+	</script>
+
+
+
+
+</body>
+</html>

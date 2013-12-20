@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns     = "http://www.w3.org/ns/widgets"
+        xmlns:gap = "http://phonegap.com/ns/1.0"
+        id        = "fr.argosapps.retro"
+        versionCode="10"
+        version   = "1.2.0">
+
+    <!-- versionCode is optional and Android only -->
+
+    <name>Retro</name>
+
+    <description>
+        Regroupement de plusieurs API test pour l'application
+    </description>
+
+    <author href="http://argosapps.fr" email="contact@argosapps.fr">
+        Argos, Argonautes
+    </author>
+	
+<feature name="Notification">
+	<param name="android-package" value="org.apache.cordova.Notification" />
+</feature>
+<feature name="SplashScreen">
+    <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
+</feature>
+
+
+<!--ICON-->	
+<!--icone de l'application-->
+<icon src="icon.png" />
+<icon src="icon/android/icon-ldpi.png"   gap:platform="android"	gap:density="ldpi" />
+<icon src="icon/android/icon-mdpi.png"   gap:platform="android"	gap:density="mdpi" />
+<icon src="icon/android/icon-hdpi.png"   gap:platform="android"	gap:density="hdpi" />
+<icon src="icon/android/icon-xhdpi.png"  gap:platform="android"	gap:density="xhdpi" />
+
+<!--on peut aussi rajouter pour platform: blackberry, webos, winphone-->
+<!-- <icon src="res/icon/blackberry/icon-80.png" 	gap:platform="blackberry" />
+<icon src="res/icon/blackberry/icon-80.png" 	gap:platform="blackberry" gap:state="hover"/>
+<icon src="res/icon/webos/icon-64.png"      	gap:platform="webos" />
+<icon src="res/icon/windows-phone/icon-48.png"  gap:platform="winphone" />
+<icon src="res/icon/windows-phone/icon-173.png" gap:platform="winphone"   gap:role="background" /> -->
+	
+	
+<!--SPLASHSCREEN-->	
+<!--image du splashscreen-->
+<gap:splash src="splashscreen/android/ldpi.png" gap:platform="android" gap:density="ldpi"/>
+<gap:splash src="splashscreen/android/mdpi.png" gap:platform="android" gap:density="mdpi"/>
+<gap:splash src="splashscreen/android/hdpi.png" gap:platform="android" gap:density="hdpi"/>
+<gap:splash src="splashscreen/android/xhdpi.png" gap:platform="android" gap:density="xhdpi"/>
+
+<!--on peut aussi rajouter pour platform: blackberry, webos, winphone-->
+<!-- <gap:splash src="splashscreen/android/ldpi.png" gap:platform="winphone" />
+<gap:splash src="splashscreen/android/ldpi.png" gap:platform="blackberry" /> -->
+
+
+<preference name="splashscreen" value="splash" />
+<preference name="splashScreenDelay" value="10000" />
+
+
+
+
+</widget>
